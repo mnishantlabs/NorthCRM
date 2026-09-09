@@ -5,7 +5,13 @@ import axios, {
 } from "axios"
 import { useAuthStore } from "@/store/auth-store"
 
-const BASE_URL = import.meta.env.VITE_API_URL || "/api/v1"
+let rawUrl = import.meta.env.VITE_API_URL || "https://northcrm.onrender.com/api/v1"
+if (rawUrl.startsWith("s://")) {
+  rawUrl = "http" + rawUrl
+} else if (!rawUrl.startsWith("http://") && !rawUrl.startsWith("https://") && !rawUrl.startsWith("/")) {
+  rawUrl = "https://" + rawUrl
+}
+const BASE_URL = rawUrl
 
 const api = axios.create({
   baseURL: BASE_URL,
