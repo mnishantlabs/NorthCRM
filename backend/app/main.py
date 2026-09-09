@@ -40,9 +40,11 @@ API_PREFIX = "/api/v1"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    if settings.ENVIRONMENT != "production":
+    try:
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
+    except Exception as e:
+        print(f"Lifespan table creation note: {e}")
     yield
     await engine.dispose()
 
@@ -56,8 +58,8 @@ def create_app() -> FastAPI:
             "calling, follow-ups, deals and analytics."
         ),
         lifespan=lifespan,
-        docs_url="/docs" if settings.ENVIRONMENT != "production" else None,
-        redoc_url="/redoc" if settings.ENVIRONMENT != "production" else None,
+        docs_url="/docs",
+        redoc_url="/redoc",
     )
 
     allowed_origins = [settings.FRONTEND_URL]
@@ -67,6 +69,7 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
+        allow_origin_regex=r"https://.*|http://localhost:\d+",
         allow_origins=allowed_origins,
         allow_credentials=True,
         allow_methods=["*"],
