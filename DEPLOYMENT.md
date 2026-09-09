@@ -97,7 +97,7 @@ To populate the database tables and seed initial data:
    python -m app.seed
    ```
 4. Access your live website on Vercel and log in:
-   - **Email**: `admin@crm.local`
+   - **Email**: `admin@northcrm.com`
    - **Password**: `Admin@1234`
 
 ---

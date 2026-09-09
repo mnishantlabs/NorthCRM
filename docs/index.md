@@ -124,7 +124,7 @@ git push -u origin main
    python -m app.seed
    ```
 4. Log into your live Vercel site:
-   - **Email**: `admin@crm.local`
+   - **Email**: `admin@northcrm.com`
    - **Password**: `Admin@1234` *(Remember to update your password after logging in!)*
 
 ---

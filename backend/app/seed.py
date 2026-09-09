@@ -39,7 +39,7 @@ DEFAULT_SERVICES: list[tuple[str, str]] = [
 
 DEFAULT_ADMIN = {
     "name": "Admin",
-    "email": "admin@crm.local",
+    "email": "admin@northcrm.com",
     "password": "Admin@1234",
     "role": UserRole.ADMIN,
 }
