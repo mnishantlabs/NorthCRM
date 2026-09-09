@@ -12,6 +12,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import AsyncSessionLocal
 from app.core.security import hash_password
+from app.models import (  # noqa: F401
+    business,
+    business_service,
+    call_log,
+    deal,
+    follow_up,
+    service,
+    user,
+)
 from app.models.service import Service
 from app.models.user import User, UserRole
 

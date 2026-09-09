@@ -10,3 +10,5 @@ services:
         value: production
       - key: PYTHON_VERSION
         value: 3.12.8
+      - key: DATABASE_URL
+        value: postgresql://postgres.xgirrlbbcqrhgbiwvhio:fDtbcjSItYKVPSKb@aws-0-ap-northeast-2.pooler.supabase.com:5432/postgres

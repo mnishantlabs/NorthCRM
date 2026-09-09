@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
+from app.schemas.user import UserResponse
+
 
 class RegisterRequest(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
