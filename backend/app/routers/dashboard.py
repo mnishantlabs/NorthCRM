@@ -37,6 +37,11 @@ async def get_stats(db: DbDep, current_user: CurrentUser) -> DashboardStats:
     response_model=list[CallsPerDay],
     summary="Get calls per day chart data",
 )
+@router.get(
+    "/calls-per-day",
+    response_model=list[CallsPerDay],
+    include_in_schema=False,
+)
 async def get_calls_per_day(
     db: DbDep, current_user: CurrentUser, days: int = Query(default=30, ge=1, le=365)
 ) -> list[CallsPerDay]:
@@ -48,6 +53,11 @@ async def get_calls_per_day(
     response_model=list[AgentPerformance],
     summary="Get agent performance chart data",
 )
+@router.get(
+    "/agent-performance",
+    response_model=list[AgentPerformance],
+    include_in_schema=False,
+)
 async def get_agent_performance(
     db: DbDep, current_user: CurrentUser
 ) -> list[AgentPerformance]:
@@ -58,6 +68,16 @@ async def get_agent_performance(
     "/charts/sales",
     response_model=list[SalesData],
     summary="Get monthly sales chart data",
+)
+@router.get(
+    "/charts/sales-data",
+    response_model=list[SalesData],
+    include_in_schema=False,
+)
+@router.get(
+    "/sales-data",
+    response_model=list[SalesData],
+    include_in_schema=False,
 )
 async def get_sales_data(
     db: DbDep,
@@ -71,6 +91,11 @@ async def get_sales_data(
     "/charts/lead-status",
     response_model=list[LeadStatus],
     summary="Get lead status distribution chart data",
+)
+@router.get(
+    "/lead-status",
+    response_model=list[LeadStatus],
+    include_in_schema=False,
 )
 async def get_lead_status(
     db: DbDep, current_user: CurrentUser

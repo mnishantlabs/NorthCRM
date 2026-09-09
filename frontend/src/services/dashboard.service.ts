@@ -14,26 +14,26 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 }
 
 export async function getCallsPerDay(days = 30): Promise<CallsPerDay[]> {
-  const { data } = await api.get<CallsPerDay[]>("/dashboard/calls-per-day", {
+  const { data } = await api.get<CallsPerDay[]>("/dashboard/charts/calls-per-day", {
     params: { days },
   })
   return data
 }
 
 export async function getAgentPerformance(): Promise<AgentPerformance[]> {
-  const { data } = await api.get<AgentPerformance[]>("/dashboard/agent-performance")
+  const { data } = await api.get<AgentPerformance[]>("/dashboard/charts/agent-performance")
   return data
 }
 
 export async function getSalesData(months = 12): Promise<SalesData[]> {
-  const { data } = await api.get<SalesData[]>("/dashboard/sales-data", {
+  const { data } = await api.get<SalesData[]>("/dashboard/charts/sales", {
     params: { months },
   })
   return data
 }
 
 export async function getLeadStatus(): Promise<LeadStatus[]> {
-  const { data } = await api.get<LeadStatus[]>("/dashboard/lead-status")
+  const { data } = await api.get<LeadStatus[]>("/dashboard/charts/lead-status")
   return data
 }
 
