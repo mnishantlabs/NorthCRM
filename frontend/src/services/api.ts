@@ -104,6 +104,12 @@ export function getErrorMessage(err: unknown): string {
     if (data && typeof data === "object") {
       const record = data as Record<string, unknown>
       if (typeof record.detail === "string") return record.detail
+      if (Array.isArray(record.detail)) {
+        return record.detail
+          .map((item: { msg?: string }) => item?.msg || String(item))
+          .filter(Boolean)
+          .join(", ")
+      }
       const messages: string[] = []
       for (const key of Object.keys(record)) {
         const value = record[key]

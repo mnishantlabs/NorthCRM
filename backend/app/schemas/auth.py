@@ -1,15 +1,20 @@
 from __future__ import annotations
 
-from pydantic import BaseModel, EmailStr, Field
-
-from app.schemas.user import UserResponse
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class RegisterRequest(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
     email: EmailStr
-    password: str = Field(..., min_length=8, max_length=128)
+    password: str = Field(..., min_length=6, max_length=128)
     phone: str | None = Field(default=None, max_length=50)
+
+    @field_validator("phone", mode="before")
+    @classmethod
+    def empty_phone_to_none(cls, v: object) -> object:
+        if v == "":
+            return None
+        return v
 
 
 class LoginRequest(BaseModel):
